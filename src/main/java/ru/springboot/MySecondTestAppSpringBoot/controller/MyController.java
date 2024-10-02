@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import ru.springboot.MySecondTestAppSpringBoot.exception.UnsupportedCodeException;
 import ru.springboot.MySecondTestAppSpringBoot.exception.ValidationFailedException;
 import ru.springboot.MySecondTestAppSpringBoot.model.Request;
 import ru.springboot.MySecondTestAppSpringBoot.model.Response;
@@ -42,6 +43,11 @@ public class MyController {
 
         try {
             validationService.isValid(bindingResult);
+        } catch (UnsupportedCodeException e) {
+            response.setCode("failed");
+            response.setErrorCode("UnsupportedCodeException");
+            response.setErrorMessage("Не поддерживаемая ошибка");
+            return new ResponseEntity<>(response, HttpStatus.CONFLICT);
         } catch (ValidationFailedException e) {
             response.setCode("failed");
             response.setErrorCode("ValidationException");
@@ -53,7 +59,6 @@ public class MyController {
             response.setErrorMessage("Произошла непредвиденная ошибка");
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
