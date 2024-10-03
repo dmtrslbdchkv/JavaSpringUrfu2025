@@ -47,7 +47,7 @@ public class MyController {
             response.setCode("failed");
             response.setErrorCode("UnsupportedCodeException");
             response.setErrorMessage("Не поддерживаемая ошибка");
-            return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ValidationFailedException e) {
             response.setCode("failed");
             response.setErrorCode("ValidationException");

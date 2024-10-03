@@ -1,11 +1,11 @@
 package ru.springboot.MySecondTestAppSpringBoot.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 @Builder
@@ -14,11 +14,12 @@ import lombok.NoArgsConstructor;
 public class Request {
 
     @NotBlank
-    @Size(max = 32)
+    @Length(max = 32)
+    @Pattern(regexp = "^(?!123$).*")
     private String uid;
 
     @NotBlank
-    @Size(max = 32)
+    @Length(max = 32)
     private String operationUid;
 
     private String systemName;
@@ -27,8 +28,8 @@ public class Request {
     private String systemTime;
     private String source;
 
-//    @Size(min = 1)
-//    @Size(max = 100000)
+    @Min(1)
+    @Max(100000)
     private int communicationId;
     private int templateId;
     private int productCode;
