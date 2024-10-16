@@ -28,14 +28,12 @@ public class MyController {
     private final ValidationService validationService;
 
     private final ModifyResponseService modifyResponseService;
-    private final ModifySystemTimeResponseService modifySystemTimeResponseService;
 
     @Autowired
     public MyController(ValidationService validationService,
-                        @Qualifier("ModifySystemTimeResponseService") ModifyResponseService modifyResponseService, ModifySystemTimeResponseService modifySystemTimeResponseService) {
+                        @Qualifier("ModifySystemTimeResponseService") ModifyResponseService modifyResponseService) {
         this.validationService = validationService;
         this.modifyResponseService = modifyResponseService;
-        this.modifySystemTimeResponseService = modifySystemTimeResponseService;
     }
 
     @PostMapping(value = "/feedback")
@@ -52,26 +50,33 @@ public class MyController {
                 .errorMessage(ErrorMessages.EMPTY)
                 .build();
 
+        log.info("response created: {}", response);
+
         try {
             validationService.isValid(bindingResult);
         } catch (UnsupportedCodeException e) {
             response.setCode(Codes.FAILED);
             response.setErrorCode(ErrorCodes.UNSUPPORTED_EXCEPTION);
             response.setErrorMessage(ErrorMessages.UNSUPPORTED);
+            log.info("add response error data: {}", response);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ValidationFailedException e) {
             response.setCode(Codes.FAILED);
             response.setErrorCode(ErrorCodes.VALIDATION_EXCEPTION);
             response.setErrorMessage(ErrorMessages.VALIDATION);
+            log.info("add response error data: {}", response);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             response.setCode(Codes.FAILED);
             response.setErrorCode(ErrorCodes.UNKNOWN_EXCEPTION);
             response.setErrorMessage(ErrorMessages.UNKNOWN);
+            log.info("add response error data: {}", response);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         modifyResponseService.modify(response);
+
+        log.info("add response error data: {}", response);
 
         return new ResponseEntity<>(modifyResponseService.modify(response), HttpStatus.OK);
     }
