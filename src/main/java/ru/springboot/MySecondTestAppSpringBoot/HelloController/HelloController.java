@@ -1,4 +1,4 @@
-package ru.slobodchikov.MyFirstTestAppSpringBoot.hello;
+package ru.springboot.MySecondTestAppSpringBoot.HelloController;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
