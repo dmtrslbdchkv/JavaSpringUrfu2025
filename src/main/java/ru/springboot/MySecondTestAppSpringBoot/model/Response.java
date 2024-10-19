@@ -8,6 +8,7 @@ import lombok.Data;
 public class Response {
     private String uid;
     private String operationUid;
+    private Systems systemName;
     private String systemTime;
     private Codes code;
     private ErrorCodes errorCode;

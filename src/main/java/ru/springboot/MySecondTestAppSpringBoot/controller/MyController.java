@@ -44,6 +44,7 @@ public class MyController {
         Response response = Response.builder()
                 .uid(request.getUid())
                 .operationUid(request.getOperationUid())
+                .systemName(request.getSystemName())
                 .systemTime(DateTimeUtil.getCustomFormat().format(new Date()))
                 .code(Codes.SUCCESS)
                 .errorCode(ErrorCodes.EMPTY)
@@ -76,7 +77,7 @@ public class MyController {
 
         modifyResponseService.modify(response);
 
-        log.info("add response error data: {}", response);
+        log.info("response modify: {}", response);
 
         return new ResponseEntity<>(modifyResponseService.modify(response), HttpStatus.OK);
     }
