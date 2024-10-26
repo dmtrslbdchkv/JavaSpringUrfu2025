@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum Systems {
     ERP("Enterprise Resource Planning"),
     CRM("Customer Relationship Management"),
-    WMS("Warehouse Management System");
+    WMS("Warehouse Management System"),
+    FIRST_SERVICE("service-1");
 
     private final String name;
 

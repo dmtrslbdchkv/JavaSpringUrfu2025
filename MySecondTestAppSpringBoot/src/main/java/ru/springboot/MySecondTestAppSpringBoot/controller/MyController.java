@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.springboot.MySecondTestAppSpringBoot.exception.UnsupportedCodeException;
 import ru.springboot.MySecondTestAppSpringBoot.exception.ValidationFailedException;
 import ru.springboot.MySecondTestAppSpringBoot.model.*;
-import ru.springboot.MySecondTestAppSpringBoot.service.ModifyResponseService;
-import ru.springboot.MySecondTestAppSpringBoot.service.ModifySystemTimeResponseService;
-import ru.springboot.MySecondTestAppSpringBoot.service.ValidationService;
+import ru.springboot.MySecondTestAppSpringBoot.service.*;
 import ru.springboot.MySecondTestAppSpringBoot.util.DateTimeUtil;
 
 import java.text.SimpleDateFormat;
@@ -26,14 +24,16 @@ import java.util.Date;
 public class MyController {
 
     private final ValidationService validationService;
-
     private final ModifyResponseService modifyResponseService;
+    private final ModifyRequestService modifyRequestService;
 
     @Autowired
     public MyController(ValidationService validationService,
-                        @Qualifier("ModifySystemTimeResponseService") ModifyResponseService modifyResponseService) {
+                        @Qualifier("ModifySystemTimeResponseService") ModifyResponseService modifyResponseService,
+                        @Qualifier("ModifyComplexRequestService") ModifyRequestService modifyRequestService) {
         this.validationService = validationService;
         this.modifyResponseService = modifyResponseService;
+        this.modifyRequestService = modifyRequestService;
     }
 
     @PostMapping(value = "/feedback")
@@ -76,6 +76,7 @@ public class MyController {
         }
 
         modifyResponseService.modify(response);
+        modifyRequestService.modify(request);
 
         log.info("response modify: {}", response);
 

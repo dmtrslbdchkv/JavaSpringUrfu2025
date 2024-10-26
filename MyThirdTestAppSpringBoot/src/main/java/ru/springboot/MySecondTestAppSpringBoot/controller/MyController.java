@@ -18,6 +18,7 @@ import ru.springboot.MySecondTestAppSpringBoot.service.ModifySystemTimeResponseS
 import ru.springboot.MySecondTestAppSpringBoot.service.ValidationService;
 import ru.springboot.MySecondTestAppSpringBoot.util.DateTimeUtil;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,7 +27,6 @@ import java.util.Date;
 public class MyController {
 
     private final ValidationService validationService;
-
     private final ModifyResponseService modifyResponseService;
 
     @Autowired
@@ -74,6 +74,19 @@ public class MyController {
             log.info("add response error data: {}", response);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
+        try {
+            Date requestDate = DateTimeUtil.getCustomFormat().parse(request.getSystemTime());
+            Date now = new Date();
+            log.info("elapsed time: " + ((now.getTime() - requestDate.getTime()) / 1000.0) + " seconds");
+        } catch (ParseException e) {
+            response.setCode(Codes.FAILED);
+            response.setErrorCode(ErrorCodes.UNKNOWN_EXCEPTION);
+            response.setErrorMessage(ErrorMessages.UNKNOWN);
+            log.info("add response error data: {}", response);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
 
         modifyResponseService.modify(response);
 
