@@ -1,4 +1,4 @@
-package ru.springboot.MySecondTestAppSpringBoot.util;
+package ru.springboot.MyThirdTestAppSpringBoot.util;
 
 import java.text.SimpleDateFormat;
 

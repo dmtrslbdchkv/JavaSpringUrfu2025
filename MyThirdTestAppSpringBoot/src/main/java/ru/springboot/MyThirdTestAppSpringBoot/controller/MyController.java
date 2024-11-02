@@ -1,4 +1,4 @@
-package ru.springboot.MySecondTestAppSpringBoot.controller;
+package ru.springboot.MyThirdTestAppSpringBoot.controller;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -10,16 +10,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.springboot.MySecondTestAppSpringBoot.exception.UnsupportedCodeException;
-import ru.springboot.MySecondTestAppSpringBoot.exception.ValidationFailedException;
-import ru.springboot.MySecondTestAppSpringBoot.model.*;
-import ru.springboot.MySecondTestAppSpringBoot.service.ModifyResponseService;
-import ru.springboot.MySecondTestAppSpringBoot.service.ModifySystemTimeResponseService;
-import ru.springboot.MySecondTestAppSpringBoot.service.ValidationService;
-import ru.springboot.MySecondTestAppSpringBoot.util.DateTimeUtil;
+import ru.springboot.MyThirdTestAppSpringBoot.exception.UnsupportedCodeException;
+import ru.springboot.MyThirdTestAppSpringBoot.exception.ValidationFailedException;
+import ru.springboot.MyThirdTestAppSpringBoot.model.*;
+import ru.springboot.MyThirdTestAppSpringBoot.service.ModifyResponseService;
+import ru.springboot.MyThirdTestAppSpringBoot.service.ValidationService;
+import ru.springboot.MyThirdTestAppSpringBoot.util.DateTimeUtil;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Slf4j

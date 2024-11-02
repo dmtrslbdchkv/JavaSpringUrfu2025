@@ -1,10 +1,10 @@
-package ru.springboot.MySecondTestAppSpringBoot.service;
+package ru.springboot.MyThirdTestAppSpringBoot.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import ru.springboot.MySecondTestAppSpringBoot.model.Response;
-import ru.springboot.MySecondTestAppSpringBoot.util.DateTimeUtil;
+import ru.springboot.MyThirdTestAppSpringBoot.model.Response;
+import ru.springboot.MyThirdTestAppSpringBoot.util.DateTimeUtil;
 
 import java.util.Date;
 

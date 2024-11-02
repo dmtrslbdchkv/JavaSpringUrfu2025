@@ -1,14 +1,16 @@
-package ru.springboot.MySecondTestAppSpringBoot.model;
+package ru.springboot.MyThirdTestAppSpringBoot.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum Codes {
-    SUCCESS("success"),
-    FAILED("failed");
+public enum Systems {
+    ERP("Enterprise Resource Planning"),
+    CRM("Customer Relationship Management"),
+    WMS("Warehouse Management System"),
+    FIRST_SERVICE("service-1");
 
     private final String name;
 
-    Codes(String name) {
+    Systems(String name) {
         this.name = name;
     }
 
