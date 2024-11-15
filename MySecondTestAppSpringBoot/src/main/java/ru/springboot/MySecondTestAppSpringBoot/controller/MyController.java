@@ -16,7 +16,6 @@ import ru.springboot.MySecondTestAppSpringBoot.model.*;
 import ru.springboot.MySecondTestAppSpringBoot.service.*;
 import ru.springboot.MySecondTestAppSpringBoot.util.DateTimeUtil;
 
-import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,19 +28,19 @@ public class MyController {
     private final ModifyResponseService modifyResponseService;
     private final ModifyRequestService modifyRequestService;
     private final AnnualBonusService annualBonusService;
-    private final QuarterlyBonusService quarterlyBonusService;
+    private final QuarterBonusService quarterBonusService;
 
     @Autowired
     public MyController(ValidationService validationService,
                         @Qualifier("ModifySystemTimeResponseService") ModifyResponseService modifyResponseService,
                         @Qualifier("ModifyComplexRequestService") ModifyRequestService modifyRequestService,
                         AnnualBonusService annualBonusService,
-                        QuarterlyBonusService quarterlyBonusService) {
+                        QuarterBonusService quarterBonusService) {
         this.validationService = validationService;
         this.modifyResponseService = modifyResponseService;
         this.modifyRequestService = modifyRequestService;
         this.annualBonusService = annualBonusService;
-        this.quarterlyBonusService = quarterlyBonusService;
+        this.quarterBonusService = quarterBonusService;
     }
 
     @PostMapping(value = "/feedback")
@@ -79,7 +78,7 @@ public class MyController {
                 Year.now().getValue()));
 
         if (request.getPosition().isManager()) {
-            response.setQuarterlyBonus(quarterlyBonusService.calculate(
+            response.setQuarterlyBonus(quarterBonusService.calculate(
                     request.getPosition(),
                     request.getSalary(),
                     request.getBonus(),

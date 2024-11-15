@@ -6,7 +6,7 @@ import ru.springboot.MySecondTestAppSpringBoot.model.Positions;
 import java.time.Year;
 
 @Service
-public class QuarterBonusServiceImpl implements QuarterlyBonusService {
+public class QuarterBonusServiceImpl implements QuarterBonusService {
 
     @Override
     public double calculate(Positions position, double salary, double bonus, int workDays, int currentYear, int quarter) {
